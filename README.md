@@ -1,2 +1,3 @@
 # EmpiricalListBoxDragAndDrop
-WPFにおけるドラッグ＆ドロップ
+WPFにおけるドラッグ＆ドロップのサンプル<br>
+Windowsのエクスプローラーで操作するのと同じような感覚でListViewの項目をドラッグ＆ドロップできる<br>
