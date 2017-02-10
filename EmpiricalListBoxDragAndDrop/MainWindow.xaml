@@ -1,0 +1,27 @@
+﻿<Window x:Class="EmpiricalListBoxDragAndDrop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="全国名字ランキング" Height="350" Width="526">
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+		<ListView Name="LeftListView" Grid.Column="0" Margin="10,10,10,10.4" ItemsSource="{Binding}" PreviewMouseLeftButtonDown="LeftListView_PreviewMouseLeftButtonDown" MouseMove="LeftListView_MouseMove">
+			<ListView.View>
+				<GridView>
+					<GridViewColumn DisplayMemberBinding="{Binding Rank}" Header="Rank"/>
+					<GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Name"/>
+				</GridView>
+			</ListView.View>
+		</ListView>
+		<ListView Name="RightListView" Grid.Column="1" Margin="10,10,10,10.4" ItemsSource="{Binding}" Drop="RightListView_Drop" AllowDrop="True">
+			<ListView.View>
+				<GridView>
+					<GridViewColumn DisplayMemberBinding="{Binding Rank}" Header="Rank"/>
+					<GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Name"/>
+				</GridView>
+			</ListView.View>
+		</ListView>
+	</Grid>
+</Window>
