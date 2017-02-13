@@ -77,18 +77,29 @@ namespace EmpiricalListBoxDragAndDrop
 			return DragDropEffects.None;
 		}
 
+		//クリック開始位置
+		Point mousePointOrigin;
+
 		private void LeftListView_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
-			listView_DoDragDrop(sender, e);
+			if(listView_DoDragDrop(sender, e) == DragDropEffects.None)
+			{
+				// ドラッグ＆ドロップが発動しなければ、クリック位置を保存しておく
+				mousePointOrigin = e.GetPosition(this);
+			}
 		}
 
 		private void LeftListView_MouseMove(object sender, MouseEventArgs e)
 		{
 			if (e.LeftButton == MouseButtonState.Pressed)
 			{
-				// マウス左クリックの各イベント([Preview]Mouse[Left]ButtonDown)の完了後に
-				// 呼び出されるので、ListView上の項目が選択状態になっている
-				listView_DoDragDrop(sender, e);
+				// クリック開始位置よりも一定以上の長さをドラッグしたとき、ドラッグアンドドロップを開始
+				if (Point.Subtract(mousePointOrigin, e.GetPosition(this)).Length > 3)
+				{
+					// マウス左クリックの各イベント([Preview]Mouse[Left]ButtonDown)の完了後に
+					// 呼び出されるので、ListView上の項目が選択状態になっている
+					listView_DoDragDrop(sender, e);
+				}
 			}
 		}
 
