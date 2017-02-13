@@ -94,7 +94,7 @@ namespace EmpiricalListBoxDragAndDrop
 			if (e.LeftButton == MouseButtonState.Pressed)
 			{
 				// クリック開始位置よりも一定以上の長さをドラッグしたとき、ドラッグアンドドロップを開始
-				if (Point.Subtract(mousePointOrigin, e.GetPosition(this)).Length > 3)
+				if (Point.Subtract(mousePointOrigin, e.GetPosition(this)).Length > 5)
 				{
 					// マウス左クリックの各イベント([Preview]Mouse[Left]ButtonDown)の完了後に
 					// 呼び出されるので、ListView上の項目が選択状態になっている
@@ -111,7 +111,6 @@ namespace EmpiricalListBoxDragAndDrop
 			var items = e.Data.GetData(_selectedItemCollection) as System.Collections.IList;
 			if (items == null) return;
 
-			//addDisplayMapDatas(items);
 			foreach(User u in items)
 			{
 				RightList.Add(u);
